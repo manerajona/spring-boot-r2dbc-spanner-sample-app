@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  shutdown: graceful
+  compression:
+    enabled: true
+
+spring:
+  application:
+    name: spring-boot-r2dbc-spanner-sample-app
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+  r2dbc:
+    url: r2dbc:cloudspanner://overwritten/projects/${gcp.project}/instances/${spanner.instance}/databases/${spanner.database}
+    properties:
+      usePlainText: true
+
+gcp.project: nv-local
+spanner:
+  instance: test-instance
+  database: test-db
+
+logging.level.org.springframework.r2dbc: DEBUG
