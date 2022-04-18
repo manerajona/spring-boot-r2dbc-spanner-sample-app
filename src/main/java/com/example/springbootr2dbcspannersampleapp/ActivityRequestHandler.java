@@ -27,6 +27,6 @@ public class ActivityRequestHandler {
     public Mono<ServerResponse> createOne(ServerRequest request) {
         return request.bodyToMono(Activity.class)
             .flatMap(a -> dao.insertOne(Activity.of(a, OffsetDateTime.now())))
-            .flatMap(a -> ok().build());
+            .flatMap(a -> ok().bodyValue(a));
     }
 }
